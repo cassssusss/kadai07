@@ -1,0 +1,28 @@
+<div class="container">
+  <h1 class="my-4">自分が登録した施設一覧</h1>
+
+  <div class="row">
+    <% @rooms.each do |room| %>
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title"><%= room.name %></h5>
+            <p class="card-text"><strong>紹介文:</strong> <%= room.description %></p>
+            <p class="card-text"><strong>料金:</strong> <%= room.price %>円/日</p>
+            <p class="card-text"><small>作成日: <%= room.created_at.strftime("%Y/%m/%d") %></small></p>
+            
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                ≡
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><%= link_to '編集', edit_room_path(room), class: 'dropdown-item' %></li>
+                <li><%= link_to '削除', room_path(room), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'dropdown-item' %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+  <h1 class="my-4">施設情報の編集</h1>
+
+  <%= form_with model: @room, local: true do |f| %>
+    <% if @room.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(@room.errors.count, "error") %>が発生しました:</h4>
+        <ul>
+          <% @room.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= f.label :name, "施設名" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :description, "説明" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :price, "料金 (円/日)" %>
+      <%= f.number_field :price, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :address, "住所" %>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+
+    <%= f.submit "更新", class: "btn btn-primary" %>
+  <% end %>
+
+  <%= link_to '戻る', rooms_path, class: 'btn btn-secondary' %>
+</div>

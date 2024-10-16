@@ -1,0 +1,39 @@
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>画像</th>
+      <th>施設名</th>
+      <th>紹介文</th>
+      <th>合計料金</th>
+      <th>チェックイン日</th>
+      <th>チェックアウト日</th>
+      <th>予約確定日時</th>
+      <th></th>
+    </tr>
+  </thead>
+    <tbody>
+     <% @reservations.each do |reservation| %>
+        <tr>
+            <td>
+              <% if reservation.room.image.attached? %>
+              <%= image_tag reservation.room.image, class: 'img-fluid', style: 'max-width: 100px;' %>
+              <% else %>
+              <%= image_tag 'default-image.png', class: 'img-fluid', style: 'max-width: 100px;' %>
+              <% end %>
+            </td>
+            <td><%= reservation.room.name %></td>
+            <td><%= reservation.room.description %></td>
+            <td><%= (reservation.check_out - reservation.check_in).to_i * reservation.room.price %>円</td>
+            <td><%= reservation.check_in.strftime("%Y/%m/%d") %></td>
+            <td><%= reservation.check_out.strftime("%Y/%m/%d") %></td>
+            <td><%= reservation.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+            <td>
+              <%= link_to '詳細を見る', reservation_path(reservation), class: "btn btn-info btn-sm me-2" %>
+              <%= link_to 'キャンセル', reservation_path(reservation), method: :delete, data: { confirm: '本当にキャンセルしますか？' }, class: "btn btn-danger btn-sm" %>
+            </td>
+        </tr>
+     <% end %>
+    </tbody>
+
+  
+</table>

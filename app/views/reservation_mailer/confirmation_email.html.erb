@@ -1,0 +1,5 @@
+<h1>予約確認メール</h1>
+<p><%= @reservation.user.name %>様、以下の予約が確認されました。</p>
+<p>チェックイン日: <%= @reservation.check_in %></p>
+<p>チェックアウト日: <%= @reservation.check_out %></p>
+<p>人数: <%= @reservation.guests %></p>

@@ -1,0 +1,51 @@
+<div class="container">
+  <h1 class="my-4">施設を登録する</h1>
+
+  <% if @room.errors.any? %>
+  <div class="alert alert-danger">
+    <h4><%= pluralize(@room.errors.count, "error") %>が発生しました:</h4>
+    <ul>
+      <% @room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <%= form_with model: @room, local: true, class: "mb-4", html: { multipart: true } do |f| %>
+    <!-- 施設名 -->
+    <div class="mb-3">
+      <%= f.label :name, "施設名", class: "form-label" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <!-- 説明 -->
+    <div class="mb-3">
+      <%= f.label :description, "説明", class: "form-label" %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <!-- 料金 -->
+    <div class="mb-3">
+      <%= f.label :price, "料金 (円/日)", class: "form-label" %>
+      <%= f.number_field :price, class: "form-control" %>
+    </div>
+
+    <!-- 住所 -->
+    <div class="mb-3">
+      <%= f.label :address, "住所", class: "form-label" %>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+
+    <!-- 画像 -->
+    <div class="mb-3">
+      <%= f.label :image, "施設画像", class: "form-label" %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+
+    <!-- 登録ボタン -->
+    <div>
+      <%= f.submit "登録", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
