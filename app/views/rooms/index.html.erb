@@ -24,18 +24,18 @@
       <div class="col-md-4">
         <div class="card mb-4">
           <div class="card-body">
-            <h5 class="card-title">
-              <%= link_to room.name, room_path(room), class: "stretched-link" %>
-            </h5>
-
             <% if room.image.attached? %>
               <%= image_tag room.image, class: 'img-fluid' %>
             <% else %>
               <%= image_tag 'default-image.png', class: 'img-fluid' %> <!-- デフォルト画像 -->
             <% end %>
+            
+            <h5 class="card-title mt-3"><%= room.name %></h5> <!-- リンクを外しました -->
 
+            <p class="card-text"><strong>住所:</strong> <%= room.address %></p>
             <p class="card-text"><%= room.description %></p>
             <p class="card-text"><strong>料金:</strong> <%= room.price %>円/日</p>
+            <%= link_to '詳細を見る', room_path(room), class: "btn btn-primary" %> <!-- 詳細ボタン -->
           </div>
         </div>
       </div>

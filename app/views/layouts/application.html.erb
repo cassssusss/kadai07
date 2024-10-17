@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ReservationApp</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>ReservationApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <!-- ナビゲーションバー -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body>
+  <!-- ナビゲーションバー -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">ReservationApp</a>
 
@@ -28,7 +25,8 @@
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= current_user.email %> <!-- アカウント名 -->
+              <%= image_tag current_user.icon.attached? ? current_user.icon : 'default-icon.png', class: 'icon-image', alt: 'User Icon' %>
+              <%= current_user.email %>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><%= link_to '施設の新規登録', new_room_path, class: 'dropdown-item' %></li>
@@ -48,20 +46,20 @@
 </nav>
 
 
-    <!-- フラッシュメッセージ -->
-    <div class="container">
-      <% if notice %>
-        <div class="alert alert-success"><%= notice %></div>
-      <% end %>
-      <% if alert %>
-        <div class="alert alert-danger"><%= alert %></div>
-      <% end %>
-    </div>
+  <!-- フラッシュメッセージ -->
+  <div class="container mt-3">
+    <% if flash[:notice] %>
+      <div class="alert alert-success"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger"><%= flash[:alert] %></div>
+    <% end %>
+  </div>
 
-    <!-- メインコンテンツ -->
-    <div class="container">
-      <%= yield %>
-    </div>
-    
-  </body>
+  <!-- メインコンテンツ -->
+  <div class="container">
+    <%= yield %>
+  </div>
+  
+</body>
 </html>

@@ -6,9 +6,9 @@
       <h5 class="card-title">住所: <%= @room.address %></h5>
 
       <% if @room.image.attached? %>
-        <%= image_tag @room.image, class: 'img-fluid' %> <!-- 画像がある場合 -->
+        <%= image_tag @room.image, class: 'img-fluid' %>
       <% else %>
-        <%= image_tag 'default-image.png', class: 'img-fluid' %> <!-- デフォルト画像 -->
+        <%= image_tag 'default-image.png', class: 'img-fluid' %>
       <% end %>
 
       <p class="card-text">
@@ -16,7 +16,11 @@
         <strong>料金:</strong> <%= @room.price %>円/日
       </p>
 
-      <%= link_to "予約する", new_reservation_path(room_id: @room.id), class: "btn btn-primary" %>
+      <% if user_signed_in? %>
+        <%= link_to "予約する", new_reservation_path(room_id: @room.id), class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary" %>
+      <% end %>
     </div>
   </div>
 </div>
