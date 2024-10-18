@@ -25,7 +25,7 @@
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= image_tag current_user.icon.attached? ? current_user.icon : 'default-icon.png', class: 'icon-image', alt: 'User Icon' %>
+              <%= image_tag current_user.icon.attached? ? current_user.icon : 'default-avatar.png', class: 'icon-image', alt: 'User Icon' %>
               <%= current_user.email %>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
