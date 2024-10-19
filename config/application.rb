@@ -11,12 +11,17 @@ module ReservationApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    # 日本語ロケールをデフォルトに設定
+    config.i18n.default_locale = :ja
+
+    # タイムゾーンを日本時間に設定
+    config.time_zone = "Asia/Tokyo"
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

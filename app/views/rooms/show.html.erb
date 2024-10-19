@@ -21,6 +21,11 @@
       <% else %>
         <%= link_to "ログイン", new_user_session_path, class: "btn btn-secondary" %>
       <% end %>
+
+      <div class="mt-4">
+        <%= link_to "前のページに戻る", request.referer || root_path, class: "btn btn-outline-secondary" %>
+      </div>
+
     </div>
   </div>
 </div>

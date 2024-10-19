@@ -30,12 +30,13 @@
               <%= image_tag 'default-image.png', class: 'img-fluid' %> <!-- デフォルト画像 -->
             <% end %>
             
-            <h5 class="card-title mt-3"><%= room.name %></h5> <!-- リンクを外しました -->
+            <h5 class="card-title mt-3">
+              <%= link_to room.name, room_path(room), class: "text-decoration-none" %>
+            </h5>
 
             <p class="card-text"><strong>住所:</strong> <%= room.address %></p>
             <p class="card-text"><%= room.description %></p>
             <p class="card-text"><strong>料金:</strong> <%= room.price %>円/日</p>
-            <%= link_to '詳細を見る', room_path(room), class: "btn btn-primary" %> <!-- 詳細ボタン -->
           </div>
         </div>
       </div>

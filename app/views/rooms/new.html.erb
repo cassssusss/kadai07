@@ -2,15 +2,15 @@
   <h1 class="my-4">施設を登録する</h1>
 
   <% if @room.errors.any? %>
-  <div class="alert alert-danger">
-    <h4><%= pluralize(@room.errors.count, "error") %>が発生しました:</h4>
-    <ul>
-      <% @room.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@room.errors.count, "error") %>が発生しました:</h4>
+      <ul>
+        <% @room.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <%= form_with model: @room, local: true, class: "mb-4", html: { multipart: true } do |f| %>
     <!-- 施設名 -->
@@ -40,7 +40,13 @@
     <!-- 画像 -->
     <div class="mb-3">
       <%= f.label :image, "施設画像", class: "form-label" %>
-      <%= f.file_field :image, class: "form-control" %>
+      <%= f.file_field :image, class: "form-control", id: "image_input" %>
+    </div>
+
+    <!-- プレビュー表示 -->
+    <div class="mb-3">
+      <label class="form-label"></label>
+      <img id="image_preview" src="#" alt="プレビュー画像" class="img-fluid" style="display: none;">
     </div>
 
     <!-- 登録ボタン -->
@@ -49,3 +55,21 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  document.getElementById('image_input').addEventListener('change', function(event) {
+    const input = event.target;
+    const preview = document.getElementById('image_preview');
+
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  });
+</script>

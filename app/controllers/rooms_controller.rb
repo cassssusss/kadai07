@@ -16,7 +16,6 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
-
   def new
     @room = Room.new
   end
@@ -50,6 +49,6 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:name, :description, :price, :address)
+    params.require(:room).permit(:name, :description, :price, :address, :image)
   end
 end
