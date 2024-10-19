@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="my-4">アカウントページ</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">アカウント情報</h5>
+
+      <p class="card-text">
+        <strong>名前:</strong> <%= @user.name %><br>
+        <strong>メールアドレス:</strong> <%= @user.email %><br>
+        <strong>パスワード:</strong> *********
+      </p>
+
+      <%= link_to 'アカウント情報を編集', edit_user_registration_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

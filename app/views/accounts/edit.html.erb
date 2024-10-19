@@ -1,0 +1,68 @@
+<div class="container">
+  <h1>アカウント設定の編集</h1>
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="#account" data-bs-toggle="tab">アカウント</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#profile" data-bs-toggle="tab">プロフィール</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <!-- アカウントタブ -->
+    <div id="account" class="tab-pane fade show active">
+      <%= form_for current_user, url: account_path, method: :patch, html: { multipart: true } do |f| %>
+        <div class="mb-3">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :current_password, "現在のパスワード" %>
+          <%= f.password_field :current_password, class: "form-control", placeholder: "現在のパスワード" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :password, "変更後のパスワード" %>
+          <%= f.password_field :password, class: "form-control", placeholder: "新しいパスワード" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :password_confirmation, "確認用パスワード" %>
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "新しいパスワードの再入力" %>
+        </div>
+
+        <%= f.submit "保存", class: "btn btn-success" %>
+      <% end %>
+    </div>
+
+    <!-- プロフィールタブ -->
+    <div id="profile" class="tab-pane fade">
+      <%= form_for current_user, url: account_path, method: :patch, html: { multipart: true } do |f| %>
+        <div class="mb-3">
+          <%= f.label :name, "名前" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :bio, "自己紹介" %>
+          <%= f.text_area :bio, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :icon, "プロフィール画像" %>
+          <%= f.file_field :icon, class: "form-control" %>
+          <% if current_user.icon.attached? %>
+            <%= image_tag current_user.icon %>
+          <% else %>
+            <%= image_tag 'default-avatar.png', class: 'img-fluid' %> <!-- デフォルト画像を表示 -->
+          <% end %>
+        </div>
+
+        <%= f.submit "保存", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>

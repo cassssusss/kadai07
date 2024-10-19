@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>アカウント設定</h1>
+  
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="#account" data-bs-toggle="tab">アカウント</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#profile" data-bs-toggle="tab">プロフィール</a>
+    </li>
+    <li class="nav-item ms-auto">
+      <%= link_to '<i class="bi bi-pencil"></i> 編集'.html_safe, edit_account_path, class: "btn btn-primary" %>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="account" class="tab-pane fade show active">
+      <p>メール: <%= current_user.email %></p>
+      <p>パスワード: <%= '*' * 8 %></p>
+    </div>
+    <div id="profile" class="tab-pane fade">
+      <p>ユーザー名: <%= current_user.name %></p>
+      <p>自己紹介: <%= current_user.bio %></p>
+      
+      <% if current_user.icon.attached? %>
+        <%= image_tag current_user.icon %>
+      <% else %>
+        <%= image_tag 'default-avatar.png' %>
+      <% end %>
+    </div>
+  </div>
+</div>

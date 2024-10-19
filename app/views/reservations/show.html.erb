@@ -1,0 +1,25 @@
+<div class="container">
+  <h1 class="my-4">予約詳細</h1>
+
+  <!-- カードコンポーネントで予約情報を表示 -->
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">施設名: <%= @reservation.room.name %></h5>
+
+      <p class="card-text">
+        <strong>チェックイン日:</strong> <%= @reservation.check_in.strftime("%Y/%m/%d") %><br>
+        <strong>チェックアウト日:</strong> <%= @reservation.check_out.strftime("%Y/%m/%d") %><br>
+
+        <% total_nights = (@reservation.check_out - @reservation.check_in).to_i %>
+        <strong>宿泊日数:</strong> <%= total_nights %>泊<br>
+
+        <strong>人数:</strong> <%= @reservation.guests %>名<br>
+
+        <strong>料金（1泊あたり）:</strong> <%= @reservation.room.price %>円<br>
+        <strong>合計料金:</strong> <%= total_nights * @reservation.room.price * @reservation.guests %>円
+      </p>
+
+      <%= link_to '予約一覧に戻る', reservations_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
